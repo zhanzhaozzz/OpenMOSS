@@ -19,7 +19,7 @@ function scrollToBento() {
   <nav class="demo-nav">
     <div class="nav-left">
       <a href="/" class="nav-logo">
-        <span class="nav-logo-icon">M</span>
+        <img src="/logo-200.png" alt="OpenMOSS" class="nav-logo-icon" />
         OpenMOSS
       </a>
       <ul class="nav-links">
@@ -85,17 +85,10 @@ function scrollToBento() {
 }
 
 .nav-logo-icon {
-  width: 24px;
-  height: 24px;
-  background: #1A1917;
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Lora', serif;
-  font-size: 13px;
-  font-weight: 700;
-  color: #FAFAF8;
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  object-fit: contain;
 }
 
 .nav-links {

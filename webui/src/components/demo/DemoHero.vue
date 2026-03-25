@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
-import { Building2, Play, Github } from 'lucide-vue-next'
+import { Play, Github } from 'lucide-vue-next'
 
 const emit = defineEmits<{
   startDemo: []
@@ -8,13 +8,13 @@ const emit = defineEmits<{
 
 // Typewriter
 const phrases = [
-  '让 AI 员工自主规划、执行、审查、巡检，就像一家真正的 AI 公司。',
+  'OpenMOSS AI 公司操作系统，让 AI Agent 帮你运营和管理公司的方方面面，24 小时自主运行、真人 0 接管，现已开源。',
   '4 种角色各司其职，全程零人工编排，7×24 无人值守。',
   '提交 → 审查 → 返工 → 再审，闭环质控保障每一份交付物。',
 ]
 
 const displayText = ref('')
-const prefix = 'OpenMOSS 是一个多 Agent 自组织协作平台——'
+const prefix = ''
 let timer: ReturnType<typeof setTimeout> | null = null
 let phraseIdx = 0
 let charIdx = 0
@@ -58,11 +58,7 @@ onUnmounted(() => {
 
 <template>
   <section class="hero">
-    <div class="page-icon">
-      <Building2 :size="36" :stroke-width="1.5" />
-    </div>
-    <div class="hero-tag">✦ 开源免费 · MIT 许可</div>
-    <h1>3分钟，当<em>AI公司</em><br>老板</h1>
+    <h1>3分钟，体验<em>AI公司</em><br>的高效率</h1>
     <p class="hero-sub">
       {{ prefix }}<span class="typed">{{ displayText }}</span><span class="cursor">|</span>
     </p>
@@ -71,11 +67,7 @@ onUnmounted(() => {
         <Play :size="15" :stroke-width="2.5" fill="currentColor" />
         开始体验 Demo
       </button>
-      <a
-        class="btn-hero btn-hero-outline"
-        href="https://github.com/uluckyXH/OpenMOSS"
-        target="_blank"
-      >
+      <a class="btn-hero btn-hero-outline" href="https://github.com/uluckyXH/OpenMOSS" target="_blank">
         <Github :size="15" :stroke-width="2" />
         GitHub
       </a>
@@ -106,6 +98,13 @@ onUnmounted(() => {
   border-radius: 14px;
   color: #8B6F4E;
   animation: fadeUp 0.5s ease both;
+  overflow: hidden;
+}
+
+.hero-logo {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
 }
 
 .hero-tag {
@@ -219,18 +218,28 @@ h1 em {
 }
 
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(16px); }
-  to { opacity: 1; transform: none; }
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 @keyframes blink {
-  50% { opacity: 0; }
+  50% {
+    opacity: 0;
+  }
 }
 
 @media (max-width: 640px) {
   .hero {
     padding: 40px 20px 32px;
   }
+
   .hero-sub {
     font-size: 15px;
   }
