@@ -43,11 +43,22 @@ st get <sub_task_id>                      # 查看子任务详情
 st block <sub_task_id>                    # 标记子任务异常（in_progress/assigned/rework → blocked）
 ```
 
+### Agent 查看
+
+```bash
+agents                                    # 查看已注册 Agent（ID、角色、状态、积分）
+agents --role executor                    # 按角色过滤
+```
+
+> 💡 巡查时可通过 `agents` 了解各 Agent 状态，便于在告警中标注相关责任人。
+
 ### 积分
 
 ```bash
 score me                                  # 查看自己的积分
-score logs                                # 查看积分明细
+score logs --page 1 --page-size 10        # 查看积分明细（建议分页，避免数据过多）
+score agent-logs <agent_id> --page 1 --page-size 10  # 查看指定 Agent 的积分明细（排查连续扣分趋势）
+score leaderboard                         # 积分排行榜
 ```
 
 > 📄 `score logs` 默认返回全部明细。如数据较多，可加 `--page N --page-size M` 分页查看。

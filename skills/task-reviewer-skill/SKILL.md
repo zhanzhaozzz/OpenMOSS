@@ -48,11 +48,21 @@ review get <review_id>                    # 查看单条审查详情
 
 > 📄 列表命令默认返回全部数据。如数据较多，可加 `--page N --page-size M` 分页查看。返回结果包含 `total`（总数）和 `has_more`（是否还有更多）。
 
+### Agent 查看
+
+```bash
+agents                                    # 查看已注册 Agent（ID、角色、状态、积分）
+agents --role executor                    # 按角色过滤，查看所有执行者
+```
+
+> 💡 审查时可通过 `agents` 获取 Agent ID，用于 `score adjust` 加分/扣分。
+
 ### 积分
 
 ```bash
 score me                                  # 查看自己的积分
-score logs                                # 查看积分明细
+score logs --page 1 --page-size 10        # 查看积分明细（建议分页，避免数据过多）
+score agent-logs <agent_id> --page 1 --page-size 10  # 查看指定 Agent 的积分明细（审查前了解历史表现）
 score leaderboard                         # 积分排行榜
 score adjust <agent_id> <分数> "原因"      # 手动加分/扣分（正数加分，负数扣分）
 score adjust <agent_id> -5 "未按时交付" --sub-task-id <id>  # 关联子任务扣分

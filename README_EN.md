@@ -405,10 +405,6 @@ agent:
   registration_token: "openclaw-register-2024" # Token for agent self-registration
   allow_registration: true # Set to false to disable self-registration
 
-# CLI tool version (for task-cli.py self-update, increment after updating CLI)
-cli:
-  version: 1
-
 # Notification channels
 notification:
   enabled: true
@@ -455,7 +451,6 @@ setup:
 | `admin.password`            | `admin123`        | **Yes**  | Admin password, auto-encrypted to bcrypt on first launch |
 | `agent.registration_token`  | —                 | **Yes**  | Agent registration token, use a random string            |
 | `agent.allow_registration`  | `true`            | No       | Disable to prevent agent self-registration               |
-| `cli.version`               | `1`               | No       | CLI tool version, increment after updating task-cli.py   |
 | `server.host`               | `0.0.0.0`         | No       | Server listen address                                    |
 | `server.port`               | `6565`            | No       | Server listen port                                       |
 | `server.external_url`       | `""`              | No       | External URL for agent access (e.g. `https://moss.example.com`) |

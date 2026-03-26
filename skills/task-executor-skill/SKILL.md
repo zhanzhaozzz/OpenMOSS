@@ -49,11 +49,20 @@ review get <review_id>                    # 查看单条审查详情
 
 当子任务状态为 `rework` 时，先查看审查记录了解问题，针对性修复后重新 `st start` → `st submit`。
 
+### Agent 查看（只读）
+
+```bash
+agents                                    # 查看已注册 Agent（ID、角色、状态、积分）
+agents --role reviewer                    # 按角色过滤
+```
+
+> ⚠️ 仅供查看团队成员信息。
+
 ### 积分
 
 ```bash
 score me                                  # 查看自己的积分表现
-score logs                                # 查看积分明细（检查扣分原因）
+score logs --page 1 --page-size 10        # 查看积分明细（建议分页，避免数据过多）
 score leaderboard                         # 积分排行榜
 ```
 

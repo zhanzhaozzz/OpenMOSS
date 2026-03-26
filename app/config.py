@@ -231,8 +231,17 @@ class AppConfig:
 
     @property
     def cli_version(self) -> int:
-        """CLI 工具最新版本号（task-cli.py 自更新用）"""
-        return self._data.get("cli", {}).get("version", 1)
+        """CLI 工具最新版本号（直接从 task-cli.py 文件读取 CLI_VERSION）"""
+        import re
+        cli_path = Path(__file__).resolve().parent.parent / "skills" / "task-cli.py"
+        try:
+            content = cli_path.read_text(encoding="utf-8")
+            match = re.search(r"^CLI_VERSION\s*=\s*(\d+)", content, re.MULTILINE)
+            if match:
+                return int(match.group(1))
+        except Exception:
+            pass
+        return 1
 
     @property
     def raw(self) -> dict:

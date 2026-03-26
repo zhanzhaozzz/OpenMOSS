@@ -16,7 +16,7 @@ import requests
 # 配置：修改为你的任务调度服务地址
 # ============================================================
 BASE_URL = "http://192.168.31.128:6565"
-CLI_VERSION = 1  # CLI 版本号，更新后递增
+CLI_VERSION = 2  # CLI 版本号，更新后递增
 
 
 # ============================================================
@@ -418,6 +418,23 @@ def cmd_score_logs(args):
         print(f"  {sign}{log['score_delta']}  {log['reason']}")
 
 
+def cmd_score_agent_logs(args):
+    """查看指定 Agent 的积分明细"""
+    params = {}
+    if hasattr(args, 'page') and args.page:
+        params["page"] = args.page
+    if hasattr(args, 'page_size') and args.page_size:
+        params["page_size"] = args.page_size
+    data = _request("get", f"/scores/{args.agent_id}/logs", args.key, params=params)
+    items = _extract_items(data)
+    if not items:
+        print("该 Agent 暂无积分记录")
+        return
+    for log in items:
+        sign = "+" if log["score_delta"] > 0 else ""
+        print(f"  {sign}{log['score_delta']}  {log['reason']}")
+
+
 def cmd_score_leaderboard(args):
     """积分排行榜"""
     data = _request("get", "/scores/leaderboard", args.key)
@@ -512,7 +529,7 @@ def cmd_agent_list(args):
     data = _request("get", "/agents", args.key, params=params)
     for a in data:
         desc = f" — {a['description']}" if a.get('description') else ""
-        print(f"  [{a['status']}] {a['name']} ({a['role']}) 积分:{a['total_score']}{desc}")
+        print(f"  [{a['status']}] {a['name']} ({a['role']}) ID:{a['id']} 积分:{a['total_score']}{desc}")
 
 
 # ============================================================
@@ -743,6 +760,12 @@ def main():
     p.add_argument("--page", type=int, help="页码")
     p.add_argument("--page-size", type=int, help="每页条数（0=全部）")
     p.set_defaults(func=cmd_score_logs)
+
+    p = score_sub.add_parser("agent-logs", help="查看指定 Agent 的积分明细")
+    p.add_argument("agent_id", help="目标 Agent ID")
+    p.add_argument("--page", type=int, help="页码")
+    p.add_argument("--page-size", type=int, help="每页条数（0=全部）")
+    p.set_defaults(func=cmd_score_agent_logs)
 
     p = score_sub.add_parser("leaderboard", help="积分排行榜")
     p.set_defaults(func=cmd_score_leaderboard)

@@ -427,10 +427,6 @@ agent:
   registration_token: "openclaw-register-2024" # Agent 自动注册令牌，在Agent注册的时候你需要把这个令牌也告诉它
   allow_registration: true # Agent 自注册开关（false=关闭自注册，只能由管理员创建）
 
-# CLI 工具版本（task-cli.py 自更新用，更新 CLI 后递增此值）
-cli:
-  version: 1
-
 # 通知渠道（OpenMOSS 内置消息，Agent 通过 GET /config/notification 获取后自行发送）
 notification:
   enabled: true # 记得打开，否则AGgent不会通知
@@ -479,7 +475,6 @@ setup:
 | `admin.password`            | `admin123`        | **是** | 管理员密码，首次启动后自动加密为 bcrypt 格式                                       |
 | `agent.registration_token`  | —                 | **是** | Agent 注册令牌，建议使用随机字符串                                                 |
 | `agent.allow_registration`  | `true`            | 否     | 关闭后 Agent 无法自注册，只能管理员创建                                            |
-| `cli.version`               | `1`               | 否     | CLI 工具版本号，更新 task-cli.py 后递增此值                                              |
 | `server.host`               | `0.0.0.0`         | 否     | 服务监听地址                                                                       |
 | `server.port`               | `6565`            | 否     | 服务监听端口                                                                       |
 | `server.external_url`       | `""`              | 否     | 服务外网访问地址（Agent 对接用，如 `https://moss.example.com`）                           |
