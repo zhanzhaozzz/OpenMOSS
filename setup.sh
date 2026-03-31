@@ -27,10 +27,10 @@ warn() { printf "${YELLOW}[OpenMOSS]${NC} %s\n" "$1"; }
 error() { printf "${RED}[OpenMOSS]${NC} %s\n" "$1" >&2; }
 
 echo ""
-printf "${BOLD}  ╔═══════════════════════════════════════╗${NC}\n"
-printf "${BOLD}  ║     🌿 OpenMOSS 一键安装 / 更新       ║${NC}\n"
-printf "${BOLD}  ║     AI 公司操作系统                    ║${NC}\n"
-printf "${BOLD}  ╚═══════════════════════════════════════╝${NC}\n"
+printf "${BOLD}  ╔══════════════════════════════════════════════════════════╗${NC}\n"
+printf "${BOLD}  ║   🌿 OpenMOSS 一键安装 / 更新                            ║${NC}\n"
+printf "${BOLD}  ║   可让多 Agent 自主运行的 AI 公司操作系统                  ║${NC}\n"
+printf "${BOLD}  ╚══════════════════════════════════════════════════════════╝${NC}\n"
 echo ""
 
 # ---------- 检查 curl ----------

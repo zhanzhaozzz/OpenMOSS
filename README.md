@@ -4,7 +4,7 @@
   <img src="docs/logo.png" alt="OpenMOSS Logo" width="200" />
 </p>
 
-**OpenMOSS，AI 公司操作系统**
+**OpenMOSS，可让多 Agent 自主运行的 AI 公司操作系统**
 
 <p align="center">
 🚀 <a href="#一为什么需要-openmoss">为什么选 OpenMOSS</a> · 
@@ -29,7 +29,7 @@
 
 > **给你的 AI 公司装上操作系统。**
 
-OpenMOSS 是一个「AI 组织 / AI 公司操作系统」，它凭借 OpenClaw、Claude Code 等 AI Agent 系统的模拟工作能力，实现了**自组织、自修复、自优化、自进化、自巡监、自激励、闭环质量控制、Skill 可插拔、循环任务**等堪比真人团队的工作能力，高度还原真人工作流。经过实测它在一定程度上具备替代「重复劳动办公环境」的可能性，使其可以获得无限进步的生产力。
+OpenMOSS 是一个可让多 Agent 自主运行的「AI 公司操作系统」，它凭借 OpenClaw、Claude Code 等 AI Agent 系统的模拟工作能力，实现了**自组织、自修复、自优化、自进化、自巡监、自激励、闭环质量控制、Skill 可插拔、循环任务**等堪比真人团队的工作能力，高度还原真人工作流。经过实测它在一定程度上具备替代「重复劳动办公环境」的可能性，使其可以获得无限进步的生产力。
 
 📖 [实际效果展示及详细使用说明（LINUX DO）](https://linux.do/t/topic/1709670) · 🌐 [English](README_EN.md)
 

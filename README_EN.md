@@ -4,7 +4,7 @@
   <img src="docs/logo.png" alt="OpenMOSS Logo" width="200" />
 </p>
 
-**OpenMOSS — The Operating System for AI Companies**
+**OpenMOSS — The Multi-Agent Autonomous Operating System for AI Companies**
 
 <p align="center">
 🚀 <a href="#why-openmoss">Why OpenMOSS</a> · 
