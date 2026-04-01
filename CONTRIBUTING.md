@@ -10,15 +10,22 @@
 
 ### 🌿 分支策略
 
-- **`dev`** — 主开发分支，所有新功能和修复请基于此分支
+- **`dev`** — 后端主开发分支，所有后端功能和修复请基于此分支
 - **`main`** — 稳定发布分支，由维护者从 `dev` 合并
+- **`webui`** — 前端独立分支（orphan），前端相关 PR 请基于此分支
 
-> ⚠️ 请务必基于 `dev` 分支创建你的 feature/fix 分支，不要基于 `main`。
+> ⚠️ 后端改动基于 `dev`，前端改动基于 `webui`，不要基于 `main`。
 
 ```bash
+# 后端开发
 git checkout dev
 git pull origin dev
 git checkout -b feat/your-feature
+
+# 前端开发（webui 是独立的 orphan 分支，建议单独 clone）
+git clone -b webui git@github.com:uluckyXH/OpenMOSS.git openmoss-webui
+cd openmoss-webui
+git checkout -b feat/your-ui-feature
 ```
 
 ### 📝 换行符
@@ -58,7 +65,7 @@ dos2unix your-file.py
 
 提交 PR 前请确认：
 
-- [ ] 基于最新的 `dev` 分支
+- [ ] 后端 PR 基于最新的 `dev` 分支，前端 PR 基于 `webui` 分支
 - [ ] 换行符为 LF（`\n`），未引入 CRLF
 - [ ] 未提交编译产物（`static/`）、数据文件（`data/`）或敏感配置（`config.yaml`）
 - [ ] 填写了 PR 描述，说明改动内容和原因
@@ -80,15 +87,22 @@ Thank you for your interest in OpenMOSS! Please read the following guidelines be
 
 ### 🌿 Branch Strategy
 
-- **`dev`** — Main development branch. All new features and fixes should be based on this branch.
+- **`dev`** — Backend development branch. All backend features and fixes should be based on this branch.
 - **`main`** — Stable release branch. Only merged from `dev` by maintainers.
+- **`webui`** — Frontend standalone branch (orphan). All frontend PRs should be based on this branch.
 
-> ⚠️ Always create your feature/fix branch from `dev`, not `main`.
+> ⚠️ Backend changes go to `dev`, frontend changes go to `webui`. Never base on `main`.
 
 ```bash
+# Backend development
 git checkout dev
 git pull origin dev
 git checkout -b feat/your-feature
+
+# Frontend development (webui is an orphan branch, recommend cloning separately)
+git clone -b webui git@github.com:uluckyXH/OpenMOSS.git openmoss-webui
+cd openmoss-webui
+git checkout -b feat/your-ui-feature
 ```
 
 ### 📝 Line Endings
@@ -128,7 +142,7 @@ These are already configured in `.gitignore`. If they appear in your PR, please 
 
 Before submitting a PR, please confirm:
 
-- [ ] Based on the latest `dev` branch
+- [ ] Backend PRs based on latest `dev`, frontend PRs based on `webui`
 - [ ] Line endings are LF (`\n`), no CRLF introduced
 - [ ] No build artifacts (`static/`), data files (`data/`), or sensitive configs (`config.yaml`)
 - [ ] PR description filled in, explaining what and why
