@@ -94,7 +94,8 @@ info "下载完成 ✓"
 mkdir -p "$INSTALL_DIR"
 
 # 需要更新的目录和文件（代码部分）
-for item in app static prompts skills rules; do
+# 注：static/ (WebUI 前端) 由后端服务启动时自动从 GitHub Release 拉取，不再随主程序分发
+for item in app prompts skills rules; do
     if [ -d "$SOURCE_DIR/$item" ]; then
         rm -rf "$INSTALL_DIR/$item"
         cp -r "$SOURCE_DIR/$item" "$INSTALL_DIR/$item"
