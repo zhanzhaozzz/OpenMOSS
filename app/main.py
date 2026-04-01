@@ -160,29 +160,31 @@ app.include_router(webui.router, prefix=API_PREFIX)
 
 
 # ============================================================
-# WebUI 静态文件服务（当 static/ 目录存在时自动启用）
+# WebUI 静态文件服务（启动时如果没有会被 webui_updater 自动下载）
 # ============================================================
 
 _webui_dist = os.path.join(os.path.dirname(__file__), "..", "static")
+_assets_dir = os.path.join(_webui_dist, "assets")
 
-if os.path.isdir(_webui_dist):
-    # 挂载静态资源（JS/CSS/图片等）
-    _assets_dir = os.path.join(_webui_dist, "assets")
-    if os.path.isdir(_assets_dir):
-        app.mount("/assets", StaticFiles(directory=_assets_dir), name="webui-assets")
+# 必须在初始化路由前确保 assets 目录存在，避免 StaticFiles 初始化报错
+# (lifespan 中 webui_updater 会覆盖并填充实际的文件)
+os.makedirs(_assets_dir, exist_ok=True)
 
-    # 所有未匹配路径 → 先尝试返回静态文件，再回退到 index.html（SPA 前端路由）
-    @app.get("/{full_path:path}", include_in_schema=False)
-    async def serve_spa(full_path: str):
-        # 先检查是否有对应的静态文件（如 logo-200.png, favicon.ico 等）
-        static_file = os.path.join(_webui_dist, full_path)
-        if full_path and os.path.isfile(static_file):
-            return FileResponse(static_file)
-        # 否则返回 index.html（SPA 路由）
-        index = os.path.join(_webui_dist, "index.html")
-        if os.path.isfile(index):
-            return FileResponse(index)
-        return JSONResponse(status_code=404, content={"detail": "WebUI not found"})
+# 挂载静态资源（JS/CSS/图片等）
+app.mount("/assets", StaticFiles(directory=_assets_dir), name="webui-assets")
 
-    print(f"[WebUI] 已挂载前端: {os.path.abspath(_webui_dist)}")
+# 所有未匹配路径 → 先尝试返回静态文件，再回退到 index.html（SPA 前端路由）
+@app.get("/{full_path:path}", include_in_schema=False)
+async def serve_spa(full_path: str):
+    # 先检查是否有对应的静态文件（如 logo-200.png, favicon.ico 等）
+    static_file = os.path.join(_webui_dist, full_path)
+    if full_path and os.path.isfile(static_file):
+        return FileResponse(static_file)
+    # 否则返回 index.html（SPA 路由）
+    index = os.path.join(_webui_dist, "index.html")
+    if os.path.isfile(index):
+        return FileResponse(index)
+    return JSONResponse(status_code=404, content={"detail": "WebUI not found"})
+
+print(f"[WebUI] 已挂载前端: {os.path.abspath(_webui_dist)}")
 
