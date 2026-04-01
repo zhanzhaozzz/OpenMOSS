@@ -156,12 +156,7 @@ fi
 # Step 5: 检查前端是否存在
 # ============================================================
 if [ ! -d "$OPENMOSS_DIR/static" ] || [ ! -f "$OPENMOSS_DIR/static/index.html" ]; then
-    warn "⚠️  未找到前端文件 (static/)"
-    echo ""
-    echo "  服务仍可启动（API 正常），但 WebUI 不可用。"
-    echo "  如需 WebUI，请构建前端："
-    echo "  cd webui && npm install && npm run build && cp -r dist/* ../static/"
-    echo ""
+    info "📦 首次启动，WebUI 前端将在服务启动时自动从 GitHub Release 下载"
 fi
 
 # ============================================================

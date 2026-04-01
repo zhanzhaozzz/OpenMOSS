@@ -232,6 +232,16 @@ class AppConfig:
         return self._data.get("webui", {}).get("feed_retention_days", 7)
 
     @property
+    def webui_github_repo(self) -> str:
+        """WebUI GitHub 仓库（owner/repo 格式），用于下载 Release"""
+        return self._data.get("webui", {}).get("github_repo", "uluckyXH/OpenMOSS")
+
+    @property
+    def webui_auto_update(self) -> bool:
+        """是否启用 WebUI 自动更新检查"""
+        return self._data.get("webui", {}).get("auto_update", True)
+
+    @property
     def cli_version(self) -> int:
         """CLI 工具最新版本号（直接从 task-cli.py 文件读取 CLI_VERSION）"""
         import re
